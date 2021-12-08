@@ -588,20 +588,22 @@ Gpex.prototype.PositionScaleBar = function() {
 	var deltaZ = Math.abs(this.bounds.maxz - this.bounds.minz);
 
 	// move bounds in the lower right to plase bar
-	this.bounds.maxx += deltaX * 0.1;
-	this.bounds.miny -= deltaY * 0.1;
+	this.bounds.maxx += deltaX * 0.05;
+	this.bounds.minx -= deltaX * 0.05;
+	this.bounds.maxy += deltaY * 0.05;
+	this.bounds.miny -= deltaY * 0.05;
 
 	// right startpoint
 	this.scalebar_points[0] = [];
-	this.scalebar_points[0][0] = this.bounds.maxx - deltaX * 0.05;
-	this.scalebar_points[0][1] = this.bounds.miny + deltaY * 0.05;
-	this.scalebar_points[0][2] = this.bounds.minz + deltaZ * 0.1;
+	this.scalebar_points[0][0] = this.bounds.maxx// - deltaX * 0.05;
+	this.scalebar_points[0][1] = this.bounds.miny// + deltaY * 0.05;
+	this.scalebar_points[0][2] = this.bounds.minz// + deltaZ * 0.1;
 
 	// left endpoint
 	this.scalebar_points[1] = [];
 	this.scalebar_points[1][0] = this.scalebar_points[0][0] - this.options.scalebarlength;
 	this.scalebar_points[1][1] = this.scalebar_points[0][1];
-	this.scalebar_points[1][2] = this.bounds.minz + deltaZ * 0.1;
+	this.scalebar_points[1][2] = this.bounds.minz;
 };
 
 Gpex.prototype.ProjectPoints = function() {

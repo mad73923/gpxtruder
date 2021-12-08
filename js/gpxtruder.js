@@ -134,6 +134,7 @@ var submitInput = function() {
 		vertical:       parseFloat(form.vertical.value),
 		bedx:           parseFloat(form.width.value),
 		bedy:           parseFloat(form.depth.value),
+		padding:        8,//mm
 		base:           parseFloat(form.base.value),
 		zcut:           form.zoverride.checked ? false : form.zcut.checked,
 		zoverride:      form.zoverride.checked,
@@ -154,7 +155,10 @@ var submitInput = function() {
 		scalebar:       form.genscalebar.checked,
 		scalebarlength: parseFloat(form.scalebarlength.value)
 	};
-	
+
+	options.bedx -= 2 * options.padding;
+	options.bedy -= 2 * options.padding;
+
 	if (!validOptions(options)) {
 		return;
 	}
@@ -987,6 +991,9 @@ Basemap.prototype.Download = function(img, scale, w, h) {
 	
 	// Draw bed outline centered on PDF above map image
 	pdfdoc.setDrawColor(26, 26, 26);
+	// TODO use options.padding
+	w += 2 * 8;
+	h += 2 * 8;
 	pdfdoc.rect(mapw/2 - w/2, maph/2 - h/2, w, h);
 	
 	// Trigger PDF download (TODO: name it appropriately)
